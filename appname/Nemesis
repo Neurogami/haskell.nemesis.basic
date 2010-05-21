@@ -1,0 +1,21 @@
+nemesis = do
+
+  clean
+    [ "**/*.hi"
+    , "**/*.o"
+    , "manifest"
+    ]
+
+  desc "Some 'dist' thing"
+  task "dist" - do
+    sh "cabal clean"
+    sh "cabal configure"
+    sh "cabal sdist"
+
+  desc "Compile <%= appname %>"
+  task "compile" - do 
+    sh "ghc --make -o <%= appname %>  <%= appname %>.hs"
+  
+  desc "Generate a manifest of hs files"
+  task "manifest" - do
+    sh "find . | grep 'hs$' > manifest"
