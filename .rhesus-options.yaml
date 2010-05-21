@@ -1,0 +1,7 @@
+language: haskell
+noparse: 
+  - .git/
+
+ignore:
+  - .git/
+  - README.md
